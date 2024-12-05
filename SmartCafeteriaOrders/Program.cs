@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using SmartCafeteriaOrders.Dtos;
 using SmartCafeteriaOrders.Repository.Data;
@@ -30,4 +31,31 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
+app.MapGet("/orders", async (IOrderService<OrderDto> orderService) =>
+{
+    return Results.Ok(await orderService.GetAllAsync());
+});
 
+app.MapGet("/orders/{id}", async (int id, IOrderService<OrderDto> orderService) =>
+{
+    var order = await orderService.GetOrderByIdAsync(id);
+    return order is not null ? Results.Ok(order) : Results.NotFound();
+});
+
+app.MapPost("/orders", async (OrderDto orderDto, IOrderService<OrderDto> orderService) =>
+{
+    await orderService.AddAsync(orderDto);
+    return Results.Ok();
+});
+
+app.MapPut("/orders/{id}", async (int id, OrderDto orderDto, IOrderService<OrderDto> orderService) =>
+{
+    await orderService.UpdateAsync(orderDto);
+    return Results.Ok();
+});
+
+app.MapDelete("/orders/{id}", async (int id, IOrderService<OrderDto> orderService) =>
+{
+    await orderService.DeleteAsync(id);
+    return Results.Ok();
+});

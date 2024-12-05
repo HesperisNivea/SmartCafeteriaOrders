@@ -6,7 +6,7 @@ interface IOrderService<T> where T : class
 {
     Task AddAsync(T dto);
     Task UpdateAsync(T dto);
-    Task DeleteAsync(T dto);
+    Task DeleteAsync(int id);
     Task<IEnumerable<T>> GetAllAsync();
     Task<T> GetOrderByIdAsync(int id);
 }
@@ -23,7 +23,7 @@ public class OrderService: IOrderService<OrderDto>
         throw new NotImplementedException();
     }
 
-    public Task DeleteAsync(OrderDto dto)
+    public Task DeleteAsync(int id)
     {
         throw new NotImplementedException();
     }
