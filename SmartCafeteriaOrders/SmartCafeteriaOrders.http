@@ -1,0 +1,6 @@
+@SmartCafeteriaOrders_HostAddress = http://localhost:5065
+
+GET {{SmartCafeteriaOrders_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,26 @@
+﻿version: '3.4'
+
+services:
+  
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "Password123"
+      ACCEPT_EULA: "Y"
+    volumes:
+          - sqlserver_data:/var/opt/mssqlMyDatabase
+  smartcafeteriaorders:
+    image: smartcafeteriaorders
+    build:
+      context: .
+      dockerfile: SmartCafeteriaOrders/Dockerfile
+    container_name: smartcafeteriaorders
+    ports:
+      - "8080:8080"
+    depends_on:
+      - sqlserver
+    environment:
+        ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=MyDatabase;User Id=sa;Password=Password123;TrustServerCertificate=True;"
+
+volumes:
+  sqlserver_data:
