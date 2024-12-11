@@ -1,4 +1,6 @@
 ﻿using SmartCafeteriaOrders.Dtos;
+using SmartCafeteriaOrders.Repository.Entities;
+using SmartCafeteriaOrders.Repository.Repositories;
 
 namespace SmartCafeteriaOrders.Services;
 
@@ -11,26 +13,41 @@ interface IOrderService<T> where T : class
     Task<T> GetOrderByIdAsync(int id);
 }
 
-public class OrderService: IOrderService<OrderDto>
+public class OrderService(IOrderRepository<OrderEntity> orders): IOrderService<OrderDto>
 {
-    public Task AddAsync(OrderDto dto)
+    public async Task AddAsync(OrderDto dto)
     {
-        throw new NotImplementedException();
+        var order = new OrderEntity
+        {
+            TotalPrice = dto.TotalPrice,
+        };
+        await orders.AddAsync(order);
     }
 
-    public Task UpdateAsync(OrderDto dto)
+    public async Task UpdateAsync(OrderDto dto)
     {
-        throw new NotImplementedException();
+        var order = new OrderEntity
+        {
+            Id = dto.Id,
+            TotalPrice = dto.TotalPrice
+        };      
+        
+        await orders.UpdateAsync(order);
     }
 
-    public Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        await orders.DeleteAsync(id);
     }
 
-    public Task<IEnumerable<OrderDto>> GetAllAsync()
+    public async Task<IEnumerable<OrderDto>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        var result = await orders.GetAllAsync();
+        return result.Select(order => new OrderDto
+        {
+            Id = order.Id,
+            TotalPrice = order.TotalPrice
+        });
     }
 
     public Task<OrderDto> GetOrderByIdAsync(int id)

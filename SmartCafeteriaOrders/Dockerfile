@@ -1,24 +1,27 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
+﻿
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
+# Copy project files
 COPY ["SmartCafeteriaOrders.sln", "."]
+COPY ["SmartCafeteriaOrders.Repository/SmartCafeteriaOrders.Repository.csproj", "SmartCafeteriaOrders.Repository/"]
 COPY ["SmartCafeteriaOrders/SmartCafeteriaOrders.csproj", "SmartCafeteriaOrders/"]
+
+# Restore dependencies
 RUN dotnet restore "SmartCafeteriaOrders/SmartCafeteriaOrders.csproj"
+
+# Copy the full solution
 COPY . .
-WORKDIR "/src/SmartCafeteriaOrders"
-RUN dotnet build "SmartCafeteriaOrders.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
+# Build all projects
+RUN dotnet build "SmartCafeteriaOrders/SmartCafeteriaOrders.csproj" -c Release
+
+# Stage 2: Publish the application
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "SmartCafeteriaOrders.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+WORKDIR /src/SmartCafeteriaOrders
+RUN dotnet publish "SmartCafeteriaOrders.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-FROM base AS final
+# Stage 3: Final runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "SmartCafeteriaOrders.dll"]

@@ -9,8 +9,8 @@ using SmartCafeteriaOrders.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<OrderDbContext>(options =>
-    options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection")
-                         ?? builder.Configuration.GetConnectionString("WebShopDbContext")));
+    options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection"),
+        b => b.MigrationsAssembly("SmartCafeteriaOrders")));
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -21,15 +21,16 @@ builder.Services.AddScoped<IOrderRepository<OrderEntity>, OrderRepository>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI();
+
+using (var scope = app.Services.CreateScope())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var dbContext = scope.ServiceProvider.GetRequiredService<OrderDbContext>();
+    dbContext.Database.Migrate();
 }
 
 app.UseHttpsRedirection();
-
 
 app.MapGet("/orders", async (IOrderService<OrderDto> orderService) =>
 {
@@ -59,3 +60,5 @@ app.MapDelete("/orders/{id}", async (int id, IOrderService<OrderDto> orderServic
     await orderService.DeleteAsync(id);
     return Results.Ok();
 });
+
+app.Run();
