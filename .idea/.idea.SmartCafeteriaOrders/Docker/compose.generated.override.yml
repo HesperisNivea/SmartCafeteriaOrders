@@ -1,0 +1,20 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  smartcafeteriaorders:
+    build:
+      context: "C:\\Users\\radom\\OneDrive\\Dokumenty\\GitHub\\SmartCafeteriaOrders"
+      dockerfile: "SmartCafeteriaOrders/Dockerfile"
+      target: "build"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/SmartCafeteriaOrders.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+    image: "smartcafeteriaorders:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\radom\\OneDrive\\Dokumenty\\GitHub\\SmartCafeteriaOrders\\SmartCafeteriaOrders:/app:rw"
+    - "C:\\Users\\radom\\OneDrive\\Dokumenty\\GitHub\\SmartCafeteriaOrders:/src:rw"
+    - "C:\\Users\\radom\\.nuget\\packages:/root/.nuget/packages"
+    working_dir: "/app"
