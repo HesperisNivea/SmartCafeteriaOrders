@@ -11,17 +11,25 @@ services:
     volumes:
           - sqlserver_data:/var/opt/mssqlMyDatabase
   smartcafeteriaorders:
-    image: smartcafeteriaorders
-    build:
-      context: .
-      dockerfile: SmartCafeteriaOrders/Dockerfile
+    image: izabelarad/smartcafeteriaorders
     container_name: smartcafeteriaorders
     ports:
       - "8080:8080"
     depends_on:
       - sqlserver
     environment:
-        ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=MyDatabase;User Id=sa;Password=Password123;TrustServerCertificate=True;"
+      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=MyDatabase;User Id=sa;Password=Password123;TrustServerCertificate=True;"
+#    image: smartcafeteriaorders
+#    build:
+#      context: .
+#      dockerfile: SmartCafeteriaOrders/Dockerfile
+#    container_name: smartcafeteriaorders
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - sqlserver
+#    environment:
+#        ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=MyDatabase;User Id=sa;Password=Password123;TrustServerCertificate=True;"
 
 volumes:
   sqlserver_data:
