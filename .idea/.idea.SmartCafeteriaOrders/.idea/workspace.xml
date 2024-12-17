@@ -10,7 +10,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98ed7bb8-9012-45c8-9f01-82f5a8d5c6c8" name="Changes" comment="Mirgations added">
+    <list default="true" id="98ed7bb8-9012-45c8-9f01-82f5a8d5c6c8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartCafeteriaOrders/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SmartCafeteriaOrders/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SmartCafeteriaOrders/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/SmartCafeteriaOrders/appsettings.Development.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SmartCafeteriaOrders/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SmartCafeteriaOrders/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
@@ -40,7 +41,10 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock://C:/Users/radom/OneDrive/Dokumenty/GitHub/SmartCafeteriaOrders/SmartCafeteriaOrders/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/radom/OneDrive/Dokumenty/GitHub/SmartCafeteriaOrders/SmartCafeteriaOrders/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/radom/OneDrive/Dokumenty/GitHub/SmartCafeteriaOrders/SmartCafeteriaOrders/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/radom/OneDrive/Dokumenty/GitHub/SmartCafeteriaOrders/SmartCafeteriaOrders/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/radom/OneDrive/Dokumenty/GitHub/SmartCafeteriaOrders/SmartCafeteriaOrders/appsettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/radom/OneDrive/Dokumenty/GitHub/SmartCafeteriaOrders/SmartCafeteriaOrders/appsettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/radom/OneDrive/Dokumenty/GitHub/SmartCafeteriaOrders/SmartCafeteriaOrders/appsettings.json" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -193,7 +197,9 @@
       <workItem from="1733914855664" duration="880000" />
       <workItem from="1733918000929" duration="4437000" />
       <workItem from="1733922923078" duration="1014000" />
-      <workItem from="1734039813993" duration="751000" />
+      <workItem from="1734039813993" duration="2476000" />
+      <workItem from="1734090580212" duration="34000" />
+      <workItem from="1734341553602" duration="2950000" />
     </task>
     <task id="LOCAL−00001" summary="init">
       <option name="closed" value="true" />
@@ -223,7 +229,14 @@
       <option name="presentableId" value="LOCAL−00004" />
       <updated>1734040366929</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL−00005" summary="ef update">
+      <option name="closed" value="true" />
+      <created>1734040912032</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1734040912032</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,6 +250,7 @@
     <MESSAGE value="endpoints" />
     <MESSAGE value="functioning docker compose" />
     <MESSAGE value="Mirgations added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mirgations added" />
+    <MESSAGE value="ef update" />
+    <option name="LAST_COMMIT_MESSAGE" value="ef update" />
   </component>
 </project>
