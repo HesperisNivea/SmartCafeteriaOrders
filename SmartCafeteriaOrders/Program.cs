@@ -8,8 +8,14 @@ using SmartCafeteriaOrders.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    connectionString = builder.Configuration.GetConnectionString("OrderDbContext");
+}
+
 builder.Services.AddDbContext<OrderDbContext>(options =>
-    options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection") ?? builder.Configuration.GetConnectionString("OrderDbContext"),
+    options.UseSqlServer(connectionString,
         b => b.MigrationsAssembly("SmartCafeteriaOrders")));
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -49,7 +55,7 @@ app.MapPost("/orders", async (OrderDto orderDto, IOrderService<OrderDto> orderSe
     return Results.Ok();
 });
 
-app.MapPut("/orders/{id}", async (int id, OrderDto orderDto, IOrderService<OrderDto> orderService) =>
+app.MapPut("/orders/{id}", async (OrderDto orderDto, IOrderService<OrderDto> orderService) =>
 {
     await orderService.UpdateAsync(orderDto);
     return Results.Ok();
