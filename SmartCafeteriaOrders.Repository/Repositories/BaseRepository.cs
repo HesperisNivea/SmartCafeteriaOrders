@@ -17,7 +17,7 @@ public class BaseRepository<T>(OrderDbContext context) : IBaseRepository<T> wher
     {
         await context.AddAsync(entity);
         await context.SaveChangesAsync();
-        
+
     }
 
     public async Task UpdateAsync(T entity)
@@ -28,10 +28,14 @@ public class BaseRepository<T>(OrderDbContext context) : IBaseRepository<T> wher
 
     public async Task DeleteAsync(int id)
     {
-        context.Remove(id);
-        await context.SaveChangesAsync();
+        var entity = await context.Set<T>().FindAsync(id);
+        if (entity != null)
+        {
+            context.Remove(entity);
+            await context.SaveChangesAsync();
+        }
     }
-   
+
 
     public async Task<IEnumerable<T>> GetAllAsync()
     {
