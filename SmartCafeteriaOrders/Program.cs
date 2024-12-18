@@ -55,7 +55,7 @@ app.MapPost("/orders", async (OrderDto orderDto, IOrderService<OrderDto> orderSe
     return Results.Ok();
 });
 
-app.MapPut("/orders/{id}", async (OrderDto orderDto, IOrderService<OrderDto> orderService) =>
+app.MapPut("/orders", async (OrderDto orderDto, IOrderService<OrderDto> orderService) =>
 {
     await orderService.UpdateAsync(orderDto);
     return Results.Ok();

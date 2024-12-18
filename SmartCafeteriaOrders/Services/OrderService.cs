@@ -13,7 +13,7 @@ interface IOrderService<T> where T : class
     Task<T> GetOrderByIdAsync(int id);
 }
 
-public class OrderService(IOrderRepository<OrderEntity> orders): IOrderService<OrderDto>
+public class OrderService(IOrderRepository<OrderEntity> orders) : IOrderService<OrderDto>
 {
     public async Task AddAsync(OrderDto dto)
     {
@@ -30,8 +30,8 @@ public class OrderService(IOrderRepository<OrderEntity> orders): IOrderService<O
         {
             Id = dto.Id,
             TotalPrice = dto.TotalPrice
-        };      
-        
+        };
+
         await orders.UpdateAsync(order);
     }
 
@@ -50,8 +50,14 @@ public class OrderService(IOrderRepository<OrderEntity> orders): IOrderService<O
         });
     }
 
-    public Task<OrderDto> GetOrderByIdAsync(int id)
+    public async Task<OrderDto?> GetOrderByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var order = await orders.GetOrderByIdAsync(id);
+        return order is not null ? new OrderDto
+        {
+            Id = order.Id,
+            TotalPrice = order.TotalPrice
+        } : null;
+
     }
 }
