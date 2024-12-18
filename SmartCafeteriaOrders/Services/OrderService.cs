@@ -10,7 +10,7 @@ interface IOrderService<T> where T : class
     Task UpdateAsync(T dto);
     Task DeleteAsync(int id);
     Task<IEnumerable<T>> GetAllAsync();
-    Task<T> GetOrderByIdAsync(int id);
+    Task<T?> GetOrderByIdAsync(int id);
 }
 
 public class OrderService(IOrderRepository<OrderEntity> orders) : IOrderService<OrderDto>
