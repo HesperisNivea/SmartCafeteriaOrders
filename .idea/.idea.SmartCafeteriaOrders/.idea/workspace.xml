@@ -12,9 +12,6 @@
   <component name="ChangeListManager">
     <list default="true" id="98ed7bb8-9012-45c8-9f01-82f5a8d5c6c8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SmartCafeteriaOrders/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SmartCafeteriaOrders/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartCafeteriaOrders/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/SmartCafeteriaOrders/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartCafeteriaOrders/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SmartCafeteriaOrders/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,6 +197,7 @@
       <workItem from="1734039813993" duration="2476000" />
       <workItem from="1734090580212" duration="34000" />
       <workItem from="1734341553602" duration="2950000" />
+      <workItem from="1734553742822" duration="3428000" />
     </task>
     <task id="LOCAL−00001" summary="init">
       <option name="closed" value="true" />
